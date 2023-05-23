@@ -3,28 +3,43 @@ import AppHeader from './components/AppHeader.vue'
 import AppMain from './components/AppMain.vue'
 
 import { store } from './data/store.js'
+import axios from 'axios'
 
 export default {
-  name: App,
+  name: 'App',
   components: {
     AppHeader,
     AppMain
   },
   data() {
-    store
+    return {
+      store
+    }
+  },
+  methods: {
+    getApi() {
+      axios.get(this.store.urlApi).then(r => {
+        this.store.personaggi = r.data.results;
+        console.log(this.store.personaggi)
+      })
+    }
+  },
+  mounted() {
+    this.getApi()
   }
-
 }
 
-axios.get(this.store.urlApi).then(r => {
-  this.store.personaggi = r.data.results;
+
+
+
 </script>
 
 
 <template>
-  <h1>ciao</h1>
   <AppHeader />
   <AppMain />
+
+  {{ store.personaggi }}
 </template>
 
 <style lang="scss" scoped></style>
