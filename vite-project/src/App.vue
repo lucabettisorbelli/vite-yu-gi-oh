@@ -19,8 +19,9 @@ export default {
   methods: {
     getApi() {
       axios.get(this.store.urlApi).then(r => {
-        this.store.personaggi = r.data.results;
-        console.log(this.store.personaggi)
+        this.store.personaggi = r.data;
+        console.log(r.data)
+
       })
     }
   },
@@ -30,16 +31,12 @@ export default {
 }
 
 
-
-
 </script>
 
 
 <template>
   <AppHeader />
-  <AppMain />
-
-  {{ store.personaggi }}
+  <AppMain :personaggi="store.personaggi.data" />
 </template>
 
 <style lang="scss" scoped></style>

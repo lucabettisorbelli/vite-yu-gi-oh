@@ -1,7 +1,11 @@
 <script>
 
+export default {
+    props: {
+        personaggi: Array
+    }
+}
 </script>
-
 
 <template>
     <main>
@@ -12,7 +16,14 @@
                 </select>
             </div>
             <div class="boxCards">
-                ciao
+                <div v-for="persona in personaggi" class="cards">
+                    <div v-for="image in persona.card_images" class="cardsImg">
+                        <img :src="image.image_url" alt="">
+                    </div>
+                    <div class="cardsText">
+                        <span>{{ persona.name }}</span>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -24,7 +35,7 @@ main {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1500px;
     margin: 0 auto;
     padding-top: 15px;
 }
@@ -34,7 +45,33 @@ main {
 }
 
 .boxCards {
-    height: 100vh;
     background-color: white;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .cards {
+        width: calc(100% / 5);
+        padding: 20px;
+
+
+        .cardsImg {
+            height: 80%;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+
+
+        }
+
+        .cardsText {
+            height: 20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
 }
 </style>
