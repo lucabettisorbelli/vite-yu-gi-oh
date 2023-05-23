@@ -2,32 +2,29 @@
 import AppHeader from './components/AppHeader.vue'
 import AppMain from './components/AppMain.vue'
 
+import { store } from './data/store.js'
+
 export default {
+  name: App,
   components: {
     AppHeader,
     AppMain
+  },
+  data() {
+    store
   }
+
 }
+
+axios.get(this.store.urlApi).then(r => {
+  this.store.personaggi = r.data.results;
 </script>
 
 
 <template>
-  <div class="conta">
-    <span>bau</span>
-  </div>
+  <h1>ciao</h1>
   <AppHeader />
   <AppMain />
 </template>
 
-<style lang="scss">
-@use "../src/partials/variables.scss" as *;
-
-.conta {
-  max-width: 1000px;
-  margin: 0 auto;
-
-  span {
-    color: $color,
-  }
-}
-</style>
+<style lang="scss" scoped></style>
