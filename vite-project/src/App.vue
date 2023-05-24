@@ -21,7 +21,7 @@ export default {
       axios.get(this.store.urlApi).then(r => {
         this.store.personaggi = r.data;
         this.store.loading = false
-        console.log(r.data)
+        // console.log(r.data)
 
       })
     }

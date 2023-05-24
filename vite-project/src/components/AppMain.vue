@@ -1,10 +1,21 @@
 <script>
 import { store } from '../data/store.js'
 export default {
-
     data() {
         return {
-            store
+            store,
+            elementiSelect: store.nuovoApi,
+            sceltaTipo: "Alien",
+        }
+    },
+    methods: {
+        nuoviDati() {
+            axios.get(this.store.nuovoApi).then(r => {
+                this.store.personaggi = r.archetype_name;
+                console.log(this.store.personaggi)
+                // console.log(r.data.archetype_name)
+            },
+            )
         }
     }
 }
@@ -14,8 +25,8 @@ export default {
     <main>
         <div class="container">
             <div class="boxSelect">
-                <select>
-                    <option>Alien</option>
+                <select v-model="sceltaTipo" @change="nuoviDati()">
+                    <option v-for="elemento in elementiSelect">{{ elemento }}</option>
                 </select>
             </div>
             <div class="boxCards">
