@@ -1,8 +1,11 @@
 <script>
-
+import { store } from '../data/store.js'
 export default {
-    props: {
-        personaggi: Array
+
+    data() {
+        return {
+            store
+        }
     }
 }
 </script>
@@ -16,7 +19,7 @@ export default {
                 </select>
             </div>
             <div class="boxCards">
-                <div v-for="persona in personaggi" class="cards">
+                <div v-for="persona in store.personaggi.data" class="cards">
                     <div v-for="image in persona.card_images" class="cardsImg">
                         <img :src="image.image_url" alt="">
                     </div>
@@ -71,6 +74,8 @@ main {
             display: flex;
             justify-content: center;
             align-items: center;
+            background-color: #d48f38;
+            color: white;
         }
     }
 }

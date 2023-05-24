@@ -36,7 +36,7 @@ export default {
 
 <template>
   <AppHeader />
-  <AppMain :personaggi="store.personaggi.data" />
+  <AppMain />
 </template>
 
 <style lang="scss" scoped></style>
