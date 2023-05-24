@@ -1,24 +1,30 @@
 <script>
 import { store } from '../data/store.js'
+import axios from 'axios'
+
 export default {
     data() {
         return {
             store,
-            elementiSelect: store.nuovoApi,
-            sceltaTipo: "Alien",
+            elementiSelect: [],
+            sceltaTipo: "",
         }
     },
     methods: {
-        nuoviDati() {
+        nuovoTipo() {
+            let url = this.store.urlApi + "&archetype=" + this.sceltaTipo;
+            axios.get(url).then(r => {
+                this.store.personaggi = r.data;
+            });
+        },
+        getArchetypes() {
             axios.get(this.store.nuovoApi).then(r => {
-                let dati = r.archetype_name
-                console.log(dati.r)
-                this.store.personaggi = dati.r;
-                console.log(this.store.personaggi)
-                // console.log(r.data.archetype_name)
-            },
-            )
+                this.elementiSelect = r.data.map(item => item.archetype_name);
+            });
         }
+    },
+    mounted() {
+        this.getArchetypes();
     }
 }
 </script>
@@ -27,12 +33,12 @@ export default {
     <main>
         <div class="container">
             <div class="boxSelect">
-                <select v-model="sceltaTipo" @change="nuoviDati()">
+                <select v-model="sceltaTipo" @change="nuovoTipo()">
                     <option v-for="elemento in elementiSelect">{{ elemento }}</option>
                 </select>
             </div>
             <div class="boxCards">
-                <div v-for="persona in store.personaggi.data" class="cards">
+                <div v-for="persona in store.personaggi.data.slice(0, 15)" class="cards">
                     <div v-for="image in persona.card_images" class="cardsImg">
                         <img :src="image.image_url" alt="">
                     </div>
