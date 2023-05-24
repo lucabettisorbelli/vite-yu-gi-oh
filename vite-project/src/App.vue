@@ -20,6 +20,7 @@ export default {
     getApi() {
       axios.get(this.store.urlApi).then(r => {
         this.store.personaggi = r.data;
+        this.store.loading = false
         console.log(r.data)
 
       })
@@ -36,7 +37,7 @@ export default {
 
 <template>
   <AppHeader />
-  <AppMain />
+  <AppMain v-if="store.loading == false" />
 </template>
 
 <style lang="scss" scoped></style>
