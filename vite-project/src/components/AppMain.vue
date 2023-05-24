@@ -11,7 +11,9 @@ export default {
     methods: {
         nuoviDati() {
             axios.get(this.store.nuovoApi).then(r => {
-                this.store.personaggi = r.archetype_name;
+                let dati = r.archetype_name
+                console.log(dati.r)
+                this.store.personaggi = dati.r;
                 console.log(this.store.personaggi)
                 // console.log(r.data.archetype_name)
             },
