@@ -7,7 +7,7 @@ export default {
         return {
             store,
             elementiSelect: [],
-            sceltaTipo: "",
+            sceltaTipo: "Visualizza Tipo",
         }
     },
     methods: {
@@ -34,6 +34,7 @@ export default {
         <div class="container">
             <div class="boxSelect">
                 <select v-model="sceltaTipo" @change="nuovoTipo()">
+                    <option>Visualizza Tipo</option>
                     <option v-for="elemento in elementiSelect">{{ elemento }}</option>
                 </select>
             </div>
@@ -60,6 +61,7 @@ main {
     max-width: 1500px;
     margin: 0 auto;
     padding-top: 15px;
+    padding-bottom: 20px;
 }
 
 .boxSelect {
@@ -71,6 +73,7 @@ main {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    padding-bottom: 20px;
 
     .cards {
         width: calc(100% / 5);
